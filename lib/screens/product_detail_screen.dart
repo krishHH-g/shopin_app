@@ -51,14 +51,17 @@ class ProductDetailScreen extends StatelessWidget {
             const SizedBox(height: 16.0),
             Text(product.description),
             const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<CartProvider>(context, listen: false)
-                    .addProduct(product);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Added to Cart')));
-              },
-              child: const Text('Add to Cart'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Provider.of<CartProvider>(context, listen: false)
+                      .addProduct(product);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Added to Cart')));
+                },
+                child: const Text('Add to Cart'),
+              ),
             ),
           ],
         ),
