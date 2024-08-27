@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_prod/states/provider_cart.dart';
@@ -23,11 +24,21 @@ class CartScreen extends StatelessWidget {
                       final product = cartProvider.cartItems[index];
                       return Card(
                         child: ListTile(
-                          leading: Image.network(product.images[0]),
+                          leading: CachedNetworkImage(
+                            height: 60,
+                            width: 60,
+                            imageUrl: product.images[0],
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                           title: Text(product.title),
-                          subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
+                          subtitle:
+                              Text('\$${product.price.toStringAsFixed(2)}'),
                           trailing: IconButton(
-                            icon:const  Icon(Icons.remove_shopping_cart,color: Colors.red,),
+                            icon: const Icon(
+                              Icons.remove_shopping_cart,
+                              color: Colors.red,
+                            ),
                             onPressed: () {
                               cartProvider.removeProduct(product);
                             },
@@ -39,7 +50,9 @@ class CartScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text('Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}', style:const TextStyle(fontSize: 23)),
+                  child: Text(
+                      'Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 23)),
                 ),
               ],
             ),

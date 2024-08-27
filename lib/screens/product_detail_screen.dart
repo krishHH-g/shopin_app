@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_prod/models/model_product.dart';
@@ -32,7 +33,10 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(product.images[0]),
+            CachedNetworkImage(
+              imageUrl: product.images[0],
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
             const SizedBox(height: 16.0),
             Text(
               product.title,

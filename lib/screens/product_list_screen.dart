@@ -3,6 +3,7 @@ import 'package:shopping_prod/apis/api_service.dart';
 import 'package:shopping_prod/models/model_product.dart';
 import 'package:shopping_prod/screens/cart_screen.dart';
 import 'package:shopping_prod/screens/product_detail_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -71,6 +72,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 childAspectRatio: 0.7,
                 crossAxisCount: 2,
               ),
+              padding: const EdgeInsets.all(10),
               itemBuilder: (context, index) {
                 final product = snapshot.data!.products[index];
                 return GestureDetector(
@@ -89,7 +91,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(product.images[0]),
+                        CachedNetworkImage(
+                          imageUrl: product.images[0],
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                         const SizedBox(height: 10),
                         Text(
                           product.title,
@@ -108,6 +114,4 @@ class _ProductListScreenState extends State<ProductListScreen> {
       ),
     );
   }
-
-  
 }
