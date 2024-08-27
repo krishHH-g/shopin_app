@@ -33,7 +33,7 @@ class CartScreen extends StatelessWidget {
                           ),
                           title: Text(product.title),
                           subtitle:
-                              Text('\$${product.price.toStringAsFixed(2)}'),
+                              Text('₹${product.price.toStringAsFixed(2)}'),
                           trailing: IconButton(
                             icon: const Icon(
                               Icons.remove_shopping_cart,
@@ -51,7 +51,7 @@ class CartScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                      'Total: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+                      'Total: ₹${cartProvider.totalPrice.toStringAsFixed(2)}',
                       style: const TextStyle(fontSize: 23)),
                 ),
               ],

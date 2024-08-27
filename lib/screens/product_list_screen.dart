@@ -102,7 +102,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 5),
-                        Text('\$${product.price.toStringAsFixed(2)}'),
+                        Text('₹${product.price.toStringAsFixed(2)}'),
                       ],
                     ),
                   ),
